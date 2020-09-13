@@ -31,18 +31,27 @@ router.use((req, res, next) => {
   next();
 });
 
+
+
+
+rouer.get('/', (req, res, next) => {
+  res.render('T2/index.pug');
+});
+
+
 /**
  * GET /books
  *
  * Display a page of books (up to ten at a time).
  */
-router.get('/', (req, res, next) => {
+
+router.get('/list', (req, res, next) => {
   getModel().list(10, req.query.pageToken, (err, entities, cursor) => {
     if (err) {
       next(err);
       return;
     }
-    res.render('books/list.pug', {
+    res.render('T2/list.pug', {
       books: entities,
       nextPageToken: cursor,
     });
@@ -50,13 +59,13 @@ router.get('/', (req, res, next) => {
 });
 
 /**
- * GET /books/add
+ * GET /T2/add
  *
  * Display a form for creating a book.
  */
 // [START add_get]
 router.get('/add', (req, res) => {
-  res.render('books/form.pug', {
+  res.render('T2/form.pug', {
     book: {},
     action: 'Add',
   });
@@ -64,7 +73,7 @@ router.get('/add', (req, res) => {
 // [END add_get]
 
 /**
- * POST /books/add
+ * POST /T2/add
  *
  * Create a book.
  */
@@ -84,7 +93,7 @@ router.post('/add', (req, res, next) => {
 // [END add_post]
 
 /**
- * GET /books/:id/edit
+ * GET /T2/:id/edit
  *
  * Display a book for editing.
  */
@@ -94,7 +103,7 @@ router.get('/:book/edit', (req, res, next) => {
       next(err);
       return;
     }
-    res.render('books/form.pug', {
+    res.render('T2/form.pug', {
       book: entity,
       action: 'Edit',
     });
@@ -102,7 +111,7 @@ router.get('/:book/edit', (req, res, next) => {
 });
 
 /**
- * POST /books/:id/edit
+ * POST /T2/:id/edit
  *
  * Update a book.
  */
@@ -119,7 +128,7 @@ router.post('/:book/edit', (req, res, next) => {
 });
 
 /**
- * GET /books/:id
+ * GET /T2/:id
  *
  * Display a book.
  */
@@ -129,14 +138,14 @@ router.get('/:book', (req, res, next) => {
       next(err);
       return;
     }
-    res.render('books/view.pug', {
+    res.render('T2/view.pug', {
       book: entity,
     });
   });
 });
 
 /**
- * GET /books/:id/delete
+ * GET /T2/:id/delete
  *
  * Delete a book.
  */
@@ -151,7 +160,7 @@ router.get('/:book/delete', (req, res, next) => {
 });
 
 /**
- * Errors on "/books/*" routes.
+ * Errors on "/T2/*" routes.
  */
 router.use((err, req, res, next) => {
   // Format error and forward to generic error handler for logging and
