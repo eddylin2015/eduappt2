@@ -13,10 +13,10 @@ app.disable('etag');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.set('trust proxy', true);
-
+app.use(express.static(path.join(__dirname,'www')));
 // T2
-app.use('/books', require('./T2/crud'));
-app.use('/api/books', require('./T2/api'));
+app.use('/T2', require('./T2/crud'));
+app.use('/api/T2', require('./T2/api'));
 
 // Redirect root to /books
 app.get('/', (req, res) => {
@@ -37,7 +37,7 @@ app.use((err, req, res) => {
   res.status(500).send(err.response || 'Something broke!');
 });
 
-const server = app.listen(config.get('PORT'), () => {
+const server = app.listen(config.get('PORT'),'192.168.62.199', () => {
     const port = server.address().port;
     console.log(`App listening on port ${port}`);
 });

@@ -34,8 +34,9 @@ router.use((req, res, next) => {
 
 
 
-rouer.get('/', (req, res, next) => {
-  res.render('T2/index.pug');
+router.get('/', (req, res, next) => {
+ // res.render('T2/index.pug');
+ res.redirect('T2/index.html');
 });
 
 
