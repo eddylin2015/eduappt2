@@ -1,17 +1,4 @@
 {
-  "name": "nodejs-getting-started",
-  "description": "End to end sample for running Node.js applications on Google Cloud Platform",
-  "version": "1.0.0",
-  "license": "Apache-2.0",
-  "author": "my Inc.",
-  "engines": {
-    "node": ">=8"
-  },
-  "main": "app.js",
-  "private": true,
-  "scripts": {
-    "start": "node app.js",
-  },
   "dependencies": {
     "body-parser": "1.18.3",
     "express": "4.16.4",
